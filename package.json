@@ -1,0 +1,37 @@
+{
+  "name": "computesdk-benchmarks",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "bench": "tsx src/run.ts",
+    "bench:e2b": "tsx src/run.ts --provider e2b",
+    "bench:vercel": "tsx src/run.ts --provider vercel",
+    "bench:blaxel": "tsx src/run.ts --provider blaxel",
+    "bench:modal": "tsx src/run.ts --provider modal",
+    "bench:daytona": "tsx src/run.ts --provider daytona",
+    "bench:railway": "tsx src/run.ts --provider railway",
+    "bench:namespace": "tsx src/run.ts --provider namespace",
+    "bench:render": "tsx src/run.ts --provider render",
+    "bench:direct": "tsx src/direct-run.ts",
+    "bench:direct:e2b": "tsx src/direct-run.ts --provider e2b",
+    "bench:direct:daytona": "tsx src/direct-run.ts --provider daytona",
+    "bench:direct:blaxel": "tsx src/direct-run.ts --provider blaxel",
+    "bench:direct:modal": "tsx src/direct-run.ts --provider modal",
+    "bench:direct:vercel": "tsx src/direct-run.ts --provider vercel"
+  },
+  "dependencies": {
+    "computesdk": "latest",
+    "@computesdk/e2b": "latest",
+    "@computesdk/daytona": "latest",
+    "@computesdk/blaxel": "latest",
+    "@computesdk/modal": "latest",
+    "@computesdk/vercel": "latest",
+    "dotenv": "^17.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}
