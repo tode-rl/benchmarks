@@ -40,7 +40,7 @@ export const directProviders: DirectBenchmarkConfig[] = [
   },
   {
     name: 'namespace',
-    requiredEnvVars: ['NSC_TOKEN'],
-    createCompute: () => namespace({ token: process.env.NSC_TOKEN! }),
+    requiredEnvVars: ['NSC_TOKEN', 'COMPUTESDK_API_KEY'],
+    createCompute: () => namespace({ token: process.env.NSC_TOKEN!, computesdkApiKey: process.env.COMPUTESDK_API_KEY! }),
   },
 ];
