@@ -29,7 +29,9 @@ Each benchmark:
 
 ## Sponsors
 
-[E2B](https://e2b.dev)
+<a href="https://e2b.dev"><img src="https://mintcdn.com/e2b/pduSmNOyhS35xRWk/logo/light.svg" alt="E2B" height="40"></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="./SPONSORSHIP.md"><img src="https://img.shields.io/badge/Your_logo_here-gray?style=for-the-badge" alt="Become a sponsor"></a>
 
 Sponsors fund large-scale infrastructure tests. **Sponsors cannot influence methodology or results.**
 
