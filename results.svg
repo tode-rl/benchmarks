@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="320" viewBox="0 0 700 320">
+  <style>
+    .bg { fill: #0d1117; }
+    .header-bg { fill: #161b22; }
+    .header { font: bold 14px -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; fill: #8b949e; }
+    .row { font: 14px -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; fill: #c9d1d9; }
+    .provider { font-weight: 600; fill: #58a6ff; }
+    .median { font-weight: 700; fill: #7ee787; }
+    .status { fill: #8b949e; }
+    .divider { stroke: #21262d; stroke-width: 1; }
+    .timestamp { font: 12px -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; fill: #6e7681; }
+    .title { font: bold 16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; fill: #c9d1d9; }
+  </style>
+  
+  <!-- Background -->
+  <rect class="bg" width="700" height="320" rx="6"/>
+  
+  <!-- Header background -->
+  <rect class="header-bg" x="0" y="0" width="700" height="50" rx="6"/>
+  <rect class="bg" x="0" y="6" width="700" height="44"/>
+  <rect class="header-bg" x="0" y="0" width="700" height="50"/>
+  
+  <!-- Header text -->
+  <text class="header" x="30" y="32">Provider</text>
+  <text class="header" x="200" y="32">Median TTI</text>
+  <text class="header" x="350" y="32">Min</text>
+  <text class="header" x="470" y="32">Max</text>
+  <text class="header" x="590" y="32">Status</text>
+  
+  <!-- Divider -->
+  <line class="divider" x1="0" y1="50" x2="700" y2="50"/>
+
+  <!-- Row 1 -->
+  <text class="row provider" x="30" y="95">Daytona</text>
+  <text class="row median" x="200" y="95">0.29s</text>
+  <text class="row" x="350" y="95">0.18s</text>
+  <text class="row" x="470" y="95">0.87s</text>
+  <text class="row status" x="590" y="95">10/10</text>
+  <line class="divider" x1="20" y1="110" x2="680" y2="110"/>
+
+  <!-- Row 2 -->
+  <text class="row provider" x="30" y="135">E2b</text>
+  <text class="row median" x="200" y="135">0.41s</text>
+  <text class="row" x="350" y="135">0.36s</text>
+  <text class="row" x="470" y="135">0.69s</text>
+  <text class="row status" x="590" y="135">10/10</text>
+  <line class="divider" x1="20" y1="150" x2="680" y2="150"/>
+
+  <!-- Row 3 -->
+  <text class="row provider" x="30" y="175">Modal</text>
+  <text class="row median" x="200" y="175">1.57s</text>
+  <text class="row" x="350" y="175">1.21s</text>
+  <text class="row" x="470" y="175">2.14s</text>
+  <text class="row status" x="590" y="175">10/10</text>
+  <line class="divider" x1="20" y1="190" x2="680" y2="190"/>
+
+  <!-- Row 4 -->
+  <text class="row provider" x="30" y="215">Blaxel</text>
+  <text class="row median" x="200" y="215">2.70s</text>
+  <text class="row" x="350" y="215">2.66s</text>
+  <text class="row" x="470" y="215">2.79s</text>
+  <text class="row status" x="590" y="215">10/10</text>
+  <line class="divider" x1="20" y1="230" x2="680" y2="230"/>
+
+  <!-- Row 5 -->
+  <text class="row provider" x="30" y="255">Vercel</text>
+  <text class="row median" x="200" y="255">2.80s</text>
+  <text class="row" x="350" y="255">2.51s</text>
+  <text class="row" x="470" y="255">3.18s</text>
+  <text class="row status" x="590" y="255">10/10</text>
+
+  <!-- Timestamp -->
+  <text class="timestamp" x="20" y="308">Last updated: Feb 18, 2026, 06:30 PM CST</text>
+  
+</svg>

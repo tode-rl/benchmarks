@@ -19,7 +19,8 @@
     "bench:direct:blaxel": "tsx src/direct-run.ts --provider blaxel",
     "bench:direct:modal": "tsx src/direct-run.ts --provider modal",
     "bench:direct:vercel": "tsx src/direct-run.ts --provider vercel",
-    "update-readme": "tsx src/update-readme.ts"
+    "update-readme": "tsx src/update-readme.ts",
+    "generate-svg": "tsx src/generate-svg.ts"
   },
   "dependencies": {
     "computesdk": "latest",
