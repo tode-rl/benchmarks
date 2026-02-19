@@ -104,12 +104,12 @@ jobs:
         with:
           name: direct-results
           path: results/
-      - run: npm run update-readme
+      - run: npm run generate-svg
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md results/
+          git add results.svg results/
           git diff --cached --quiet && echo "No changes to commit" && exit 0
           git commit -m "chore: update benchmark results [skip ci]"
           git push

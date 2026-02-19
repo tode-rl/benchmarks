@@ -11,28 +11,7 @@ How fast can you go from API call to running code? We measure it daily, publish 
 
 ## Latest Results
 
-<!-- BENCHMARK-RESULTS-START -->
-> Last run: 2026-02-19T00:30:31.834Z
-
-<table width="100%">
-<thead>
-<tr>
-<th align="left">Provider</th>
-<th align="center">Median TTI</th>
-<th align="center">Min</th>
-<th align="center">Max</th>
-<th align="center">Status</th>
-</tr>
-</thead>
-<tbody>
-<tr><td>Daytona</td><td align="center"><b>0.29s</b></td><td align="center">0.18s</td><td align="center">0.87s</td><td align="center">10/10</td></tr>
-<tr><td>E2B</td><td align="center"><b>0.41s</b></td><td align="center">0.36s</td><td align="center">0.69s</td><td align="center">10/10</td></tr>
-<tr><td>Modal</td><td align="center"><b>1.57s</b></td><td align="center">1.21s</td><td align="center">2.14s</td><td align="center">10/10</td></tr>
-<tr><td>Blaxel</td><td align="center"><b>2.70s</b></td><td align="center">2.66s</td><td align="center">2.79s</td><td align="center">10/10</td></tr>
-<tr><td>Vercel</td><td align="center"><b>2.80s</b></td><td align="center">2.51s</td><td align="center">3.18s</td><td align="center">10/10</td></tr>
-</tbody>
-</table>
-<!-- BENCHMARK-RESULTS-END -->
+![Benchmark Results](./results.svg)
 
 **TTI (Time to Interactive)** = API call to first command execution. Lower is better.
 
