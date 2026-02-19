@@ -7,6 +7,23 @@
 
 <br>
 
+## What We Measure
+
+**Daily: Time to Interactive (TTI)**
+
+```
+API Request → Provisioning → Boot → Ready → First Command
+└───────────────────── TTI ─────────────────────┘
+```
+
+Each benchmark creates a fresh sandbox, runs `echo "benchmark"`, and records wall-clock time. 10 iterations per provider, every day, fully automated.
+
+**Sponsor-only tests coming soon:** Stress tests, warm starts, multi-region, and more. [See roadmap →](#roadmap)
+
+[Full methodology →](./METHODOLOGY.md)
+
+<br>
+
 ## Sponsors
 
 <a href="https://e2b.dev"><img src="./logos/e2b.svg" alt="E2B" height="40"></a>
@@ -24,23 +41,6 @@ Sponsors fund large-scale infrastructure tests. **Sponsors cannot influence meth
 - 🔁 **Reproducible** — Anyone can run the same tests
 - ⚙️ **Automated** — Daily runs via GitHub Actions
 - 🛡️ **Independent** — Sponsors cannot influence results
-
-<br>
-
-## What We Measure
-
-**Daily: Time to Interactive (TTI)**
-
-```
-API Request → Provisioning → Boot → Ready → First Command
-└───────────────────── TTI ─────────────────────┘
-```
-
-Each benchmark creates a fresh sandbox, runs `echo "benchmark"`, and records wall-clock time. 10 iterations per provider, every day, fully automated.
-
-**Sponsor-only tests coming soon:** Stress tests, warm starts, multi-region, and more. [See roadmap →](#roadmap)
-
-[Full methodology →](./METHODOLOGY.md)
 
 <br>
 
