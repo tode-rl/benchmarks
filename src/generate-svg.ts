@@ -45,18 +45,18 @@ function generateSVG(results: BenchmarkResult[], timestamp: string): string {
   const headerHeight = 110; // Space for logo and title
   const tableHeaderHeight = 44;
   const padding = 24;
-  const width = 800;
+  const width = 1000; // Wider to fill GitHub readme
   const tableTop = headerHeight + padding; // Add padding between header and table
   const height = tableTop + tableHeaderHeight + (sorted.length * rowHeight) + padding + 40;
 
-  // Column positions
+  // Column positions (spread out for wider layout)
   const cols = {
     rank: 40,
-    provider: 90,
-    median: 320,
-    min: 480,
-    max: 600,
-    status: 720,
+    provider: 100,
+    median: 400,
+    min: 600,
+    max: 750,
+    status: 900,
   };
 
   let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
