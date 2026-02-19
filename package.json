@@ -27,7 +27,7 @@
     "@computesdk/daytona": "latest",
     "@computesdk/e2b": "latest",
     "@computesdk/modal": "latest",
-    "@computesdk/namespace": "^1.1.34",
+    "@computesdk/namespace": "^1.2.0",
     "@computesdk/vercel": "latest",
     "computesdk": "latest",
     "dotenv": "^17.2.1"
