@@ -34,17 +34,6 @@ Each benchmark creates a fresh sandbox, runs `echo "benchmark"`, and records wal
 
 <br>
 
-## Run It Yourself
-
-```bash
-git clone https://github.com/computesdk/benchmarks.git
-cd benchmarks && npm install
-cp env.example .env  # Add your API keys
-npm run bench
-```
-
-<br>
-
 ## Transparency
 
 | | |
