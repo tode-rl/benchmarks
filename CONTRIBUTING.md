@@ -44,7 +44,7 @@ export const yourProvider: DirectBenchmarkConfig = {
 
 ### Adding a Provider (Magic Mode)
 
-Magic Mode requires integration with the ComputeSDK orchestrator. Contact us at benchmarks@computesdk.com to discuss.
+Magic Mode requires integration with the ComputeSDK orchestrator. Open a GitHub issue to discuss.
 
 ## For General Contributors
 
@@ -108,4 +108,3 @@ npm run bench:direct -- --iterations 5
 ## Questions
 
 - **General questions**: Open a GitHub issue
-- **Security issues**: security@computesdk.com (do not open public issues)
