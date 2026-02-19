@@ -3,22 +3,7 @@
 ## Latest Results
 
 <!-- BENCHMARK-RESULTS-START -->
-
-### Magic Mode (via ComputeSDK Gateway)
-> Last run: 2026-02-19T01:11:54.276Z
-
-| Provider | Median TTI | Min | Max | Status |
-|----------|-----------|-----|-----|--------|
-| daytona | 0.00s | 0.00s | 0.00s | 0/10 OK |
-| e2b | 3.74s | 2.78s | 5.65s | 10/10 OK |
-| namespace | 6.91s | 4.07s | 10.29s | 10/10 OK |
-| modal | 7.56s | 4.76s | 13.47s | 10/10 OK |
-| vercel | 7.82s | 7.16s | 8.79s | 10/10 OK |
-| render | 10.79s | 8.32s | 19.22s | 9/10 OK |
-| blaxel | 12.04s | 11.85s | 13.14s | 10/10 OK |
-| railway | 15.09s | 11.34s | 21.09s | 9/10 OK |
-
-### Direct Mode (provider SDKs only)
+### Direct Mode
 > Last run: 2026-02-19T00:30:31.834Z
 
 | Provider | Median TTI | Min | Max | Status |
