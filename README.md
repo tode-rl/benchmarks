@@ -9,24 +9,6 @@
 
 <br>
 
-## What We Measure
-
-```
-API Request → Provisioning → Boot → Ready → First Command
-└───────────────────── TTI ─────────────────────┘
-```
-
-Each benchmark:
-1. Creates a fresh sandbox
-2. Runs `echo "benchmark"`
-3. Records wall-clock time
-
-**10 iterations per provider. Every day. Fully automated.**
-
-[Full methodology →](./METHODOLOGY.md)
-
-<br>
-
 ## Sponsors
 
 <a href="https://e2b.dev"><img src="./logos/e2b.svg" alt="E2B" height="40"></a>
@@ -34,6 +16,23 @@ Each benchmark:
 Sponsors fund large-scale infrastructure tests. **Sponsors cannot influence methodology or results.**
 
 [Become a sponsor →](./SPONSORSHIP.md)
+
+<br>
+
+## What We Measure
+
+**Daily: Time to Interactive (TTI)**
+
+```
+API Request → Provisioning → Boot → Ready → First Command
+└───────────────────── TTI ─────────────────────┘
+```
+
+Each benchmark creates a fresh sandbox, runs `echo "benchmark"`, and records wall-clock time. 10 iterations per provider, every day, fully automated.
+
+**Coming soon: Stress tests, warm starts, multi-region, and more.** [See roadmap →](#roadmap)
+
+[Full methodology →](./METHODOLOGY.md)
 
 <br>
 
