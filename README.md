@@ -1,4 +1,12 @@
-# ComputeSDK Sandbox Provider Benchmarks
+# ComputeSDK Benchmarks
+
+**Independent performance benchmarks for cloud sandbox providers.**
+
+We measure what matters: how fast can developers go from API call to running code? Our benchmarks run daily, results are public, and methodology is open source.
+
+[View Full Methodology](./METHODOLOGY.md) | [Become a Sponsor](./SPONSORSHIP.md)
+
+---
 
 ## Latest Results
 
@@ -15,52 +23,114 @@
 | vercel | 2.80s | 2.51s | 3.18s | 10/10 OK |
 <!-- BENCHMARK-RESULTS-END -->
 
+> **TTI (Time to Interactive)** = Total time from API call to first command execution. Lower is better.
 
+---
 
-## Methodology
+## What We Measure
 
-We measure **Time to Interactive (TTI)** — the total wall-clock time from initiating sandbox creation to completing the first command execution.
+**Time to Interactive (TTI)** captures the full developer experience:
 
-Each benchmark iteration does the following:
+```
+API Request → Infrastructure Provisioning → Environment Ready → First Command Executes
+└──────────────────────────── TTI ────────────────────────────────┘
+```
 
-1. `sandbox = await compute.sandbox.create()` — provisions infrastructure, installs the daemon, and waits until the sandbox is ready
-2. `sandbox.runCommand('echo "benchmark"')` — executes a trivial command to confirm the sandbox is fully interactive
-3. `sandbox.destroy()` — tears down the sandbox (not included in TTI measurement)
+Each benchmark iteration:
+1. Creates a fresh sandbox via the provider's API
+2. Executes a simple command (`echo "benchmark"`)
+3. Records the total wall-clock time
 
-A single `performance.now()` timer wraps steps 1 and 2. This captures the full end-user experience: API call latency, infrastructure provisioning, daemon boot, health check polling, and first command round-trip.
+We run **10 iterations per provider, daily**, from a consistent environment. Results include min, max, median, and average times.
 
-Each provider is run for 3 iterations by default (configurable via `--iterations`). Results report min, max, median, and average TTI. Providers are run sequentially to avoid resource contention.
+See [METHODOLOGY.md](./METHODOLOGY.md) for complete technical details.
 
-### Two Benchmark Modes
+---
 
-**Magic Mode** — Routes through the ComputeSDK gateway (Tributary + Daemon). Requires `COMPUTESDK_API_KEY`. Tests all 8 providers: e2b, vercel, blaxel, modal, daytona, railway, namespace, render.
+## Providers Tested
 
-**Direct Mode** — Uses the individual provider SDK packages (`@computesdk/e2b`, `@computesdk/daytona`, etc.) directly, bypassing the ComputeSDK gateway. No `COMPUTESDK_API_KEY` needed. Tests 5 providers: e2b, daytona, blaxel, modal, vercel.
+| Provider | Status | Notes |
+|----------|--------|-------|
+| [Daytona](https://daytona.io) | Active | |
+| [E2B](https://e2b.dev) | Active | |
+| [Modal](https://modal.com) | Active | |
+| [Blaxel](https://blaxel.ai) | Active | |
+| [Vercel](https://vercel.com) | Active | Fluid Compute |
+| [Railway](https://railway.app) | Active | Magic Mode only |
+| [Namespace](https://namespace.so) | Active | Magic Mode only |
+| [Render](https://render.com) | Active | Magic Mode only |
 
-## Run Locally
+Want your provider included? See [SPONSORSHIP.md](./SPONSORSHIP.md).
+
+---
+
+## Benchmark Modes
+
+**Direct Mode** — Tests each provider's native SDK directly. Measures raw provider performance.
+
+**Magic Mode** — Routes through the ComputeSDK orchestrator. Measures the unified SDK experience across all providers.
+
+---
+
+## Run It Yourself
+
+Everything is open source. Reproduce our results locally:
 
 ```bash
-# Install dependencies
+git clone https://github.com/computesdk/benchmarks.git
+cd benchmarks
 npm install
-
-# Copy .env.example and fill in your API keys
-cp .env.example .env
+cp env.example .env  # Add your API keys
 ```
-
-### Magic Mode
 
 ```bash
-npm run bench                    # All providers
-npm run bench:e2b                # Single provider
-npm run bench -- --iterations 5  # Custom iterations
+# Direct mode (provider SDKs)
+npm run bench:direct
+
+# Magic mode (ComputeSDK orchestrator)
+npm run bench
+
+# Single provider
+npm run bench:direct:e2b
+
+# Custom iterations
+npm run bench:direct -- --iterations 20
 ```
 
-### Direct Mode
+Results are saved to `results/` as JSON.
 
-```bash
-npm run bench:direct                    # All providers
-npm run bench:direct:e2b                # Single provider
-npm run bench:direct -- --iterations 5  # Custom iterations
-```
+---
 
-Results are saved to `results/` as JSON files.
+## Transparency
+
+- **Open source**: All benchmark code is public
+- **Raw data**: Every result is committed to this repo
+- **Reproducible**: Anyone can run the same tests
+- **Daily runs**: Automated via GitHub Actions
+- **No editorial control**: Sponsors cannot influence results
+
+---
+
+## Sponsors
+
+This benchmark is supported by sandbox providers who believe in transparent performance measurement.
+
+Sponsorship includes benchmark participation and helps fund infrastructure for large-scale quarterly tests. **Sponsors have no influence over methodology or results.**
+
+[View sponsorship details →](./SPONSORSHIP.md)
+
+---
+
+## Roadmap
+
+- [ ] **Q2 2026**: Launch benchmarks.computesdk.com with historical charts
+- [ ] **Q2 2026**: First 10,000 concurrent sandbox stress test
+- [ ] **Q3 2026**: Add cold start vs warm start metrics
+- [ ] **Q3 2026**: Multi-region testing (US, EU, Asia)
+- [ ] **Q4 2026**: Cost-per-sandbox-minute tracking
+
+---
+
+## License
+
+MIT. See [LICENSE](./LICENSE).
