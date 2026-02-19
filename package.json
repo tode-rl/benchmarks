@@ -18,7 +18,8 @@
     "bench:direct:daytona": "tsx src/direct-run.ts --provider daytona",
     "bench:direct:blaxel": "tsx src/direct-run.ts --provider blaxel",
     "bench:direct:modal": "tsx src/direct-run.ts --provider modal",
-    "bench:direct:vercel": "tsx src/direct-run.ts --provider vercel"
+    "bench:direct:vercel": "tsx src/direct-run.ts --provider vercel",
+    "update-readme": "tsx src/update-readme.ts"
   },
   "dependencies": {
     "computesdk": "latest",
