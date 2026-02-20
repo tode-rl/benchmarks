@@ -64,16 +64,16 @@ export const providers: ProviderConfig[] = [
       return compute;
     },
   },
-  {
-    name: 'render',
-    requiredEnvVars: ['COMPUTESDK_API_KEY', 'RENDER_API_KEY', 'RENDER_OWNER_ID'],
-    createCompute: () => {
-      compute.setConfig({
-        provider: 'render',
-        computesdkApiKey: process.env.COMPUTESDK_API_KEY!,
-        render: { apiKey: process.env.RENDER_API_KEY!, ownerId: process.env.RENDER_OWNER_ID! },
-      } as any);
-      return compute;
-    },
-  },
+  // {
+  //   name: 'render',
+  //   requiredEnvVars: ['COMPUTESDK_API_KEY', 'RENDER_API_KEY', 'RENDER_OWNER_ID'],
+  //   createCompute: () => {
+  //     compute.setConfig({
+  //       provider: 'render',
+  //       computesdkApiKey: process.env.COMPUTESDK_API_KEY!,
+  //       render: { apiKey: process.env.RENDER_API_KEY!, ownerId: process.env.RENDER_OWNER_ID! },
+  //     } as any);
+  //     return compute;
+  //   },
+  // },
 ];
