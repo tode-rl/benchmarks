@@ -1,4 +1,4 @@
-export interface DirectBenchmarkConfig {
+export interface ProviderConfig {
   /** Provider name */
   name: string;
   /** Number of iterations (default: 3) */
@@ -7,21 +7,8 @@ export interface DirectBenchmarkConfig {
   timeout?: number;
   /** Environment variables that must all be set to run this benchmark */
   requiredEnvVars: string[];
-  /** Returns a configured compute instance using the provider's direct SDK */
+  /** Creates a compute instance — either direct SDK or gateway-based */
   createCompute: () => any;
-}
-
-export interface BenchmarkConfig {
-  /** Provider name */
-  name: string;
-  /** Number of iterations (default: 3) */
-  iterations?: number;
-  /** Timeout per iteration in ms (default: 120000) */
-  timeout?: number;
-  /** Environment variables that must all be set to run this benchmark */
-  requiredEnvVars: string[];
-  /** Maps env var names to config field names for setConfig() */
-  envToConfig: Record<string, string>;
 }
 
 export interface TimingResult {

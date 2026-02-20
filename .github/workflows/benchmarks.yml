@@ -18,8 +18,8 @@ permissions:
   contents: write
 
 jobs:
-  bench-magic:
-    name: Magic Mode Benchmarks
+  bench:
+    name: Run Benchmarks
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -29,7 +29,7 @@ jobs:
           node-version: 20
           cache: 'npm'
       - run: npm ci
-      - name: Run magic mode benchmarks
+      - name: Run benchmarks
         env:
           COMPUTESDK_API_KEY: ${{ secrets.COMPUTESDK_API_KEY }}
           E2B_API_KEY: ${{ secrets.E2B_API_KEY }}
@@ -48,63 +48,6 @@ jobs:
           RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
           RENDER_OWNER_ID: ${{ secrets.RENDER_OWNER_ID }}
         run: npm run bench -- --iterations ${{ github.event.inputs.iterations || '5' }}
-      - uses: actions/upload-artifact@v4
-        with:
-          name: magic-results
-          path: results/*.json
-          if-no-files-found: error
-          retention-days: 90
-
-  bench-direct:
-    name: Direct Mode Benchmarks
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-      - run: npm ci
-      - name: Run direct mode benchmarks
-        env:
-          E2B_API_KEY: ${{ secrets.E2B_API_KEY }}
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_TEAM_ID: ${{ secrets.VERCEL_TEAM_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-          BL_API_KEY: ${{ secrets.BL_API_KEY }}
-          BL_WORKSPACE: ${{ secrets.BL_WORKSPACE }}
-          MODAL_TOKEN_ID: ${{ secrets.MODAL_TOKEN_ID }}
-          MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
-          DAYTONA_API_KEY: ${{ secrets.DAYTONA_API_KEY }}
-          NSC_TOKEN: ${{ secrets.NSC_TOKEN }}
-        run: npm run bench:direct -- --iterations ${{ github.event.inputs.iterations || '5' }}
-      - uses: actions/upload-artifact@v4
-        with:
-          name: direct-results
-          path: results/direct-*.json
-          if-no-files-found: error
-          retention-days: 90
-
-  update-readme:
-    name: Update README
-    needs: [bench-magic, bench-direct]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-      - run: npm ci
-      - uses: actions/download-artifact@v4
-        with:
-          name: magic-results
-          path: results/
-      - uses: actions/download-artifact@v4
-        with:
-          name: direct-results
-          path: results/
       - run: npm run generate-svg
       - name: Commit and push
         run: |

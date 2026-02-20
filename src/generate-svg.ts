@@ -18,7 +18,7 @@ interface ResultFile {
 
 function getMostRecentFile(): ResultFile | null {
   const files = fs.readdirSync(RESULTS_DIR)
-    .filter(f => f.endsWith('.json') && f.startsWith('direct-'))
+    .filter(f => f.endsWith('.json'))
     .sort()
     .reverse();
 

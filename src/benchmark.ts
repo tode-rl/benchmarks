@@ -1,5 +1,4 @@
-import { compute } from 'computesdk';
-import type { BenchmarkConfig, BenchmarkResult, TimingResult, Stats } from './types.js';
+import type { ProviderConfig, BenchmarkResult, TimingResult, Stats } from './types.js';
 
 function computeStats(values: number[]): Stats {
   if (values.length === 0) return { min: 0, max: 0, median: 0, avg: 0 };
@@ -18,7 +17,7 @@ function computeStats(values: number[]): Stats {
   };
 }
 
-export async function runBenchmark(config: BenchmarkConfig): Promise<BenchmarkResult> {
+export async function runBenchmark(config: ProviderConfig): Promise<BenchmarkResult> {
   const { name, iterations = 3, timeout = 120_000, requiredEnvVars } = config;
 
   // Check if all required credentials are available
@@ -33,19 +32,7 @@ export async function runBenchmark(config: BenchmarkConfig): Promise<BenchmarkRe
     };
   }
 
-  // Build provider-specific config from env vars
-  const providerConfig: Record<string, string> = {};
-  for (const [envVar, configField] of Object.entries(config.envToConfig)) {
-    providerConfig[configField] = process.env[envVar]!;
-  }
-
-  // Configure compute to use this provider
-  compute.setConfig({
-    provider: name,
-    computesdkApiKey: process.env.COMPUTESDK_API_KEY!,
-    [name]: providerConfig,
-  } as any);
-
+  const compute = config.createCompute();
   const results: TimingResult[] = [];
 
   console.log(`\n--- Benchmarking: ${name} (${iterations} iterations) ---`);
@@ -54,7 +41,7 @@ export async function runBenchmark(config: BenchmarkConfig): Promise<BenchmarkRe
     console.log(`  Iteration ${i + 1}/${iterations}...`);
 
     try {
-      const iterationResult = await runIteration(timeout);
+      const iterationResult = await runIteration(compute, timeout);
       results.push(iterationResult);
       console.log(`    TTI: ${(iterationResult.ttiMs / 1000).toFixed(2)}s`);
     } catch (err) {
@@ -75,11 +62,10 @@ export async function runBenchmark(config: BenchmarkConfig): Promise<BenchmarkRe
   };
 }
 
-async function runIteration(timeout: number): Promise<TimingResult> {
+async function runIteration(compute: any, timeout: number): Promise<TimingResult> {
   let sandbox: any = null;
 
   try {
-    // Measure total time: create sandbox + first code execution
     const start = performance.now();
 
     sandbox = await withTimeout(compute.sandbox.create(), timeout, 'Sandbox creation timed out');

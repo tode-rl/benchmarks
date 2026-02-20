@@ -13,12 +13,6 @@
     "bench:railway": "tsx src/run.ts --provider railway",
     "bench:namespace": "tsx src/run.ts --provider namespace",
     "bench:render": "tsx src/run.ts --provider render",
-    "bench:direct": "tsx src/direct-run.ts",
-    "bench:direct:e2b": "tsx src/direct-run.ts --provider e2b",
-    "bench:direct:daytona": "tsx src/direct-run.ts --provider daytona",
-    "bench:direct:blaxel": "tsx src/direct-run.ts --provider blaxel",
-    "bench:direct:modal": "tsx src/direct-run.ts --provider modal",
-    "bench:direct:vercel": "tsx src/direct-run.ts --provider vercel",
     "update-readme": "tsx src/update-readme.ts",
     "generate-svg": "tsx src/generate-svg.ts"
   },
@@ -26,8 +20,8 @@
     "@computesdk/blaxel": "^1.5.7",
     "@computesdk/daytona": "^1.7.14",
     "@computesdk/e2b": "^1.7.34",
+    "@computesdk/hopx": "^0.2.10",
     "@computesdk/modal": "^1.8.29",
-    "@computesdk/namespace": "^1.2.0",
     "@computesdk/vercel": "^1.7.13",
     "computesdk": "^2.2.1",
     "dotenv": "^17.2.1"

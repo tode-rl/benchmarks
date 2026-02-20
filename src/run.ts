@@ -21,11 +21,6 @@ function getArgValue(args: string[], flag: string): string | undefined {
 }
 
 async function main() {
-  if (!process.env.COMPUTESDK_API_KEY) {
-    console.error('COMPUTESDK_API_KEY is required. Set it in your .env or environment.');
-    process.exit(1);
-  }
-
   console.log('ComputeSDK Sandbox Provider Benchmarks');
   console.log(`Iterations per provider: ${iterations}`);
   console.log(`Date: ${new Date().toISOString()}\n`);
