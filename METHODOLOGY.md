@@ -77,8 +77,14 @@ We use a minimal command to isolate sandbox startup time from command complexity
 | Iterations per provider | 10 |
 | Timeout per iteration | 120 seconds |
 | Run frequency | Daily at 00:00 UTC |
-| Runner environment | GitHub Actions (ubuntu-latest) |
+| Runner environment | GitHub Actions (namespace-profile-default) |
 | Node.js version | 20.x |
+
+### Provider Integration
+
+**Native SDK**: Uses provider's native SDK package (daytona, blaxel, modal, vercel)
+
+**Via ComputeSDK orchestrator**: Routes through ComputeSDK's orchestrator for platforms without native sandbox APIs (namespace, railway, render)
 
 ### Provider Execution Order
 
@@ -107,13 +113,12 @@ We emphasize **median** as the primary metric because it's robust to outliers an
 
 ### Test Runner
 
-All benchmarks run on GitHub Actions hosted runners:
+All benchmarks run on GitHub Actions using Namespace runners:
 
 - **OS**: Ubuntu (latest LTS)
-- **CPU**: 2-core x86_64
-- **Memory**: 7 GB
-- **Network**: GitHub's shared datacenter network
-- **Location**: Azure US regions (GitHub's infrastructure)
+- **Profile**: namespace-profile-default
+- **Network**: Namespace's infrastructure
+- **Location**: Namespace-managed infrastructure
 
 ### Network Considerations
 
