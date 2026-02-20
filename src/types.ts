@@ -1,7 +1,7 @@
 export interface ProviderConfig {
   /** Provider name */
   name: string;
-  /** Number of iterations (default: 3) */
+  /** Number of iterations (default: 10) */
   iterations?: number;
   /** Timeout per iteration in ms (default: 120000) */
   timeout?: number;

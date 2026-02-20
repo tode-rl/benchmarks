@@ -18,7 +18,7 @@ function computeStats(values: number[]): Stats {
 }
 
 export async function runBenchmark(config: ProviderConfig): Promise<BenchmarkResult> {
-  const { name, iterations = 3, timeout = 120_000, requiredEnvVars } = config;
+  const { name, iterations = 10, timeout = 120_000, requiredEnvVars } = config;
 
   // Check if all required credentials are available
   const missingVars = requiredEnvVars.filter(v => !process.env[v]);
@@ -52,6 +52,17 @@ export async function runBenchmark(config: ProviderConfig): Promise<BenchmarkRes
   }
 
   const successful = results.filter(r => !r.error);
+
+  // If every iteration failed, mark as skipped so it doesn't show 0.00s
+  if (successful.length === 0) {
+    return {
+      provider: name,
+      iterations: results,
+      summary: { ttiMs: { min: 0, max: 0, median: 0, avg: 0 } },
+      skipped: true,
+      skipReason: 'All iterations failed',
+    };
+  }
 
   return {
     provider: name,

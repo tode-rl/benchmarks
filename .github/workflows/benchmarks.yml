@@ -8,7 +8,7 @@ on:
       iterations:
         description: 'Iterations per provider'
         required: false
-        default: '3'
+        default: '10'
 
 concurrency:
   group: benchmarks
@@ -20,13 +20,13 @@ permissions:
 jobs:
   bench:
     name: Run Benchmarks
-    runs-on: ubuntu-latest
+    runs-on: namespace-profile-default
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: 'npm'
       - run: npm ci
       - name: Run benchmarks
@@ -47,7 +47,7 @@ jobs:
           NSC_TOKEN: ${{ secrets.NSC_TOKEN }}
           RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
           RENDER_OWNER_ID: ${{ secrets.RENDER_OWNER_ID }}
-        run: npm run bench -- --iterations ${{ github.event.inputs.iterations || '5' }}
+        run: npm run bench -- --iterations ${{ github.event.inputs.iterations || '10' }}
       - run: npm run generate-svg
       - name: Commit and push
         run: |
