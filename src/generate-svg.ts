@@ -31,9 +31,13 @@ function formatSeconds(ms: number): string {
   return (ms / 1000).toFixed(2) + 's';
 }
 
-function capitalize(s: string): string {
+// Providers that require COMPUTESDK_API_KEY (via ComputeSDK orchestrator)
+const GATEWAY_PROVIDERS = ['namespace', 'railway', 'render'];
+
+function formatProviderName(s: string): string {
   if (s.toLowerCase() === 'e2b') return 'E2B';
-  return s.charAt(0).toUpperCase() + s.slice(1);
+  const name = s.charAt(0).toUpperCase() + s.slice(1);
+  return GATEWAY_PROVIDERS.includes(s.toLowerCase()) ? name + '*' : name;
 }
 
 function generateSVG(results: BenchmarkResult[], timestamp: string): string {
@@ -48,7 +52,8 @@ function generateSVG(results: BenchmarkResult[], timestamp: string): string {
   const width = 1000; // Wider to fill GitHub readme
   const tableTop = headerHeight + padding; // Add padding between header and table
   const tableBottom = tableTop + tableHeaderHeight + (sorted.length * rowHeight);
-  const height = tableBottom + padding + 30; // Just space for timestamp
+  const footnoteHeight = 20;
+  const height = tableBottom + padding + 30 + footnoteHeight; // Space for timestamp and footnote
 
   // Column positions (spread out for wider layout)
   const cols = {
@@ -139,7 +144,7 @@ function generateSVG(results: BenchmarkResult[], timestamp: string): string {
     svg += `
   <!-- Row ${rank} -->
   <text class="${rankClass}" x="${cols.rank}" y="${y}">${rank}</text>
-  <text class="row provider" x="${cols.provider}" y="${y}">${capitalize(r.provider)}</text>
+  <text class="row provider" x="${cols.provider}" y="${y}">${formatProviderName(r.provider)}</text>
   <text class="row median ${speedClass}" x="${cols.median}" y="${y}">${formatSeconds(medianMs)}</text>
   <text class="row" x="${cols.min}" y="${y}">${formatSeconds(r.summary.ttiMs.min)}</text>
   <text class="row" x="${cols.max}" y="${y}">${formatSeconds(r.summary.ttiMs.max)}</text>
@@ -164,7 +169,10 @@ function generateSVG(results: BenchmarkResult[], timestamp: string): string {
   
   svg += `
   <!-- Timestamp -->
-  <text class="timestamp" x="${width - padding}" y="${height - 14}" text-anchor="end">Last updated: ${date}</text>
+  <text class="timestamp" x="${width - padding}" y="${height - 28}" text-anchor="end">Last updated: ${date}</text>
+  
+  <!-- Footnote -->
+  <text class="timestamp" x="${padding}" y="${height - 14}">* Uses ComputeSDK orchestrator</text>
   
 </svg>`;
 
