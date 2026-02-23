@@ -3,6 +3,7 @@ import { daytona } from '@computesdk/daytona';
 import { blaxel } from '@computesdk/blaxel';
 import { modal } from '@computesdk/modal';
 import { vercel } from '@computesdk/vercel';
+import { runloop } from '@computesdk/runloop';
 import { compute } from 'computesdk';
 import type { ProviderConfig } from './types.js';
 
@@ -38,6 +39,11 @@ export const providers: ProviderConfig[] = [
     name: 'vercel',
     requiredEnvVars: ['VERCEL_TOKEN', 'VERCEL_TEAM_ID', 'VERCEL_PROJECT_ID'],
     createCompute: () => vercel({ token: process.env.VERCEL_TOKEN!, teamId: process.env.VERCEL_TEAM_ID!, projectId: process.env.VERCEL_PROJECT_ID! }),
+  },
+  {
+    name: 'runloop',
+    requiredEnvVars: ['RUNLOOP_API_KEY'],
+    createCompute: () => runloop({ apiKey: process.env.RUNLOOP_API_KEY! }),
   },
   // --- Automatic mode (via ComputeSDK gateway) ---
   {
